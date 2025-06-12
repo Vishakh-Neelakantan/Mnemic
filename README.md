@@ -43,7 +43,7 @@ uvicorn fastapi_spaced_repetition:app --reload
 ``` </pre>
 - 3️⃣ Frontend Setup (Next.js + Tailwind)
 
-`cd ../frontend` run `npm install` and `npm run dev` to start the frontend server.
+`cd ../frontend` run `npm install` or `npm install --legacy-peer-deps` and `npm run dev` to start the frontend server.
 
 
 ---
