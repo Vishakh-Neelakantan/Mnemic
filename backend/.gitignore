@@ -1,0 +1,10 @@
+# Ignore environment file
+.env
+
+# Ignore model and encoder files
+*.h5
+*.pkl
+
+# Bytecode and cache
+__pycache__/
+*.pyc
