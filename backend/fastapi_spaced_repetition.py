@@ -13,6 +13,18 @@ from datetime import datetime, timedelta
 import json
 import os
 from tensorflow.keras.losses import MeanSquaredError # type: ignore
+from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env
+load_dotenv()
+
+model_path = os.getenv("MODEL_PATH")
+scaler_path = os.getenv("SCALER_PATH")
+difficulty_encoder_path = os.getenv("DIFFICULTY_ENCODER_PATH")
+subject_encoder_path = os.getenv("SUBJECT_ENCODER_PATH")
+
 
 
 # Pydantic models for API requests
@@ -214,6 +226,15 @@ class SpacedRepetitionAPI:
 
 # Initialize the API
 app = FastAPI(title="Spaced Repetition API", version="1.0.0")
+
+# 👇 Allow frontend to access backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For development; change to your frontend origin in prod
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Initialize the model (make sure model files are in the same directory)
 try:
